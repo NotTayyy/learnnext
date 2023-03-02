@@ -1,12 +1,12 @@
 migrate((db) => {
   const dao = new Dao(db)
-  const collection = dao.findCollectionByNameOrId("iz5g909wru98vkf")
+  const collection = dao.findCollectionByNameOrId("oppuerspucyrz5c")
 
-  // update
+  // add
   collection.schema.addField(new SchemaField({
     "system": false,
-    "id": "yv2czxqs",
-    "name": "title",
+    "id": "wy1ightq",
+    "name": "parent",
     "type": "text",
     "required": false,
     "unique": false,
@@ -17,13 +17,28 @@ migrate((db) => {
     }
   }))
 
+  // add
+  collection.schema.addField(new SchemaField({
+    "system": false,
+    "id": "cwg7rp0x",
+    "name": "children",
+    "type": "relation",
+    "required": false,
+    "unique": false,
+    "options": {
+      "maxSelect": 1,
+      "collectionId": "oppuerspucyrz5c",
+      "cascadeDelete": false
+    }
+  }))
+
   // update
   collection.schema.addField(new SchemaField({
     "system": false,
-    "id": "97p5hw91",
-    "name": "content",
+    "id": "bty1r0xf",
+    "name": "message",
     "type": "text",
-    "required": false,
+    "required": true,
     "unique": false,
     "options": {
       "min": null,
@@ -35,30 +50,21 @@ migrate((db) => {
   return dao.saveCollection(collection)
 }, (db) => {
   const dao = new Dao(db)
-  const collection = dao.findCollectionByNameOrId("iz5g909wru98vkf")
+  const collection = dao.findCollectionByNameOrId("oppuerspucyrz5c")
+
+  // remove
+  collection.schema.removeField("wy1ightq")
+
+  // remove
+  collection.schema.removeField("cwg7rp0x")
 
   // update
   collection.schema.addField(new SchemaField({
     "system": false,
-    "id": "yv2czxqs",
-    "name": "title",
+    "id": "bty1r0xf",
+    "name": "message",
     "type": "text",
-    "required": true,
-    "unique": false,
-    "options": {
-      "min": null,
-      "max": null,
-      "pattern": ""
-    }
-  }))
-
-  // update
-  collection.schema.addField(new SchemaField({
-    "system": false,
-    "id": "97p5hw91",
-    "name": "content",
-    "type": "text",
-    "required": true,
+    "required": false,
     "unique": false,
     "options": {
       "min": null,

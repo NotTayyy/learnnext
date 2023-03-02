@@ -1,6 +1,6 @@
 migrate((db) => {
   const dao = new Dao(db)
-  const collection = dao.findCollectionByNameOrId("iz5g909wru98vkf")
+  const collection = dao.findCollectionByNameOrId("oppuerspucyrz5c")
 
   collection.listRule = ""
   collection.viewRule = ""
@@ -11,7 +11,7 @@ migrate((db) => {
   return dao.saveCollection(collection)
 }, (db) => {
   const dao = new Dao(db)
-  const collection = dao.findCollectionByNameOrId("iz5g909wru98vkf")
+  const collection = dao.findCollectionByNameOrId("oppuerspucyrz5c")
 
   collection.listRule = null
   collection.viewRule = null
